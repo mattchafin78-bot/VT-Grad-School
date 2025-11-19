@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Policy Issue Brief: Non-Chemical Crop Control</title>
-    <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Load Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
         /* Custom styles for professional appearance and print */
@@ -16,13 +14,22 @@
             background-color: #f7f9fb; /* Light off-white/blue background */
         }
         .policy-container {
-            Max-width: 8.5in; /* Standard paper width for easy printing */
-            Min-height: 11in; /* Standard paper height */
+            max-width: 8.5in; /* Standard paper width for easy printing */
+            min-height: 11in; /* Standard paper height */
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
         }
+        
+        /* --- UPDATED HEADER STYLE (HERO IMAGE) --- */
         .header-banner {
-            background-color: #047857; /* Deep Forest Green */
+            background-color: #047857; /* Fallback color */
+            /* Linear gradient overlay + Image URL */
+            background-image: 
+                linear-gradient(rgba(4, 120, 87, 0.6), rgba(4, 120, 87, 0.6)),
+                url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
         }
+
         .key-stat-box {
             border-left: 5px solid #ef4444; /* Red accent for warning */
         }
@@ -41,21 +48,62 @@
                 color: #34d399; /* Light Green */
             }
         }
+
+        /* --- PRINT SPECIFIC STYLES --- */
+        @media print {
+            /* 1. Force Background Colors & Images */
+            body, .header-banner, .bg-red-50, .bg-green-50, .key-stat-box {
+                -webkit-print-color-adjust: exact !important;   /* Chrome/Safari */
+                print-color-adjust: exact !important;           /* Firefox/Standard */
+                color-adjust: exact !important;
+            }
+
+            /* 2. Page Setup */
+            @page {
+                size: letter;       
+                margin: 0.5in;      
+            }
+
+            /* 3. Clean Up Container for Print */
+            body {
+                background-color: white; 
+                padding: 0;
+            }
+            
+            .policy-container {
+                width: 100%;
+                max-width: none;     
+                box-shadow: none;    
+                border: none;        
+                padding: 0;          
+                margin: 0;
+            }
+
+            /* 4. Prevent Awkward Page Breaks */
+            .grid > div, .header-banner {
+                break-inside: avoid; 
+                page-break-inside: avoid;
+            }
+        }
     </style>
 </head>
 <body class="p-4 sm:p-8 flex justify-center">
 
     <div class="policy-container bg-white rounded-xl overflow-hidden p-6 sm:p-10">
 
-        <!-- Policy Title and Metadata -->
-        <div class="mb-4 text-center">
-            <h1 class="text-3xl font-extrabold text-gray-800">Non-Chemical-Based Crop Control (NCBCC)</h1>
-            <h2 class="text-xl font-medium text-gray-600 mt-1">A Market-Driven Approach to Farm Sustainability and Public Health</h2>
-            <p class="text-xs text-gray-400 mt-2">Prepared for: Congressional Sub-Committee on Agriculture | November 2025</p>
+        <div class="mb-4 flex flex-col sm:flex-row items-center justify-between">
+            <div class="mb-4 sm:mb-0 sm:mr-6">
+               
+            </div>
+            
+            <div class="text-center flex-1">
+                <h1 class="text-3xl font-extrabold text-gray-800">Non-Chemical-Based Crop Control (NCBCC)</h1>
+                <h2 class="text-xl font-medium text-gray-600 mt-1">A Market-Driven Approach to Farm Sustainability</h2>
+                <p class="text-xs text-gray-400 mt-2">Prepared for: Congressional Sub-Committee on Agriculture | November 2025</p>
+            </div>
         </div>
 
-        <!-- THE ASK: POLICY RECOMMENDATION BANNER -->
-        <div class="header-banner mb-4 text-white p-4 sm:p-5 rounded-lg">
+        <div class="header-banner mb-4 text-white p-4 sm:p-5 rounded-lg shadow-md">
             <h3 class="text-lg sm:text-2xl font-black mb-2 uppercase tracking-wider">
                 Proposal: Fund U.S. Department of Agriculture (USDA) Grants to Promote Healthy Farms
             </h3>
@@ -67,20 +115,18 @@
             </p>
         </div>
 
-        <!-- PROBLEM SECTION -->
         <div class="grid lg:grid-cols-2 gap-8 mb-4">
             <div class="p-5 bg-red-50 border border-red-200 rounded-xl shadow-inner">
                 <h3 class="text-xl font-bold text-red-700 mb-3 flex items-center">
                      <i class="fa-solid fa-skull-crossbones mr-3"></i> The Problem: High Cost of Chemical Reliance
                 </h3>
 
-                <!-- Key Stat Box -->
                 <div class="key-stat-box bg-white p-3 rounded-md shadow-md mb-4">
                     <div class="flex items-center">
                         <i class="fas fa-hospital text-red-500 text-2xl mr-3"></i>
                         <div>
                             <p class="text-xs font-semibold uppercase text-red-600">Annual Public Health Costs</p>
-                            <p class="text-2xl font-extrabold text-gray-900"> <a href="https://pubmed.ncbi.nlm.nih.gov/27765541/" target="_blank">$42.0 Billion<sup>1</sup></a></p>
+                            <p class="text-2xl font-extrabold text-gray-900"> <a href="https://pubmed.ncbi.nlm.nih.gov/27765541/" target="_blank" class="hover:text-red-700 underline decoration-dotted">$42.0 Billion<sup>1</sup></a></p>
                         </div>
                     </div>
                 </div>
@@ -94,39 +140,50 @@
                 <p class="text-sm text-gray-700 leading-relaxed">
                     Policy and markets portray chemical usage as safe and cost-effective rendering regulation ineffective.
                 </p>
+		
+			<div class="mt-4 rounded-lg overflow-hidden shadow-sm h-40 relative group">
+    <img src="https://www.deere.com/assets/images/region-4/products/application-equipment/technozzlegy-sprayers-r2z019323.jpg" alt="Self-Propelled Sprayers | John Deere US" class=" nofocus" tabindex="0" aria-label="Self-Propelled Sprayers | John Deere US" role="button">
+    <div class="absolute bottom-0 left-0 bg-red-900 bg-opacity-75 text-white text-xs px-2 py-1">
+        Current State: Industrial Chemical Reliance
+    </div>
+</div>
+		
             </div>
 
-            <!-- SOLUTION FLOWCHART & METHODS -->
             <div class="p-5 bg-green-50 border border-green-200 rounded-xl shadow-inner">
                 <h3 class="text-xl font-bold text-green-700 mb-4 flex items-center">
-                    <i class="fas fa-seedling mr-3"></i> The Solution: Boost Farmer Adoption of NCBCC's
+                    <i class="fas fa-seedling mr-3"></i> The Solution: Boost Farmer Adoption
                 </h3>
- 		
-		<div class="flex flex-col lg:flex-row justify-between items-center text-center lg:space-x-4">
-                                 
-                    <!-- Step 1: Source -->
+        
+                <div class="flex flex-col lg:flex-row justify-between items-center text-center lg:space-x-4 mb-6">
                     <div class="flowchart-item p-3 bg-white border border-green-300 rounded-lg shadow-md flex-1 w-full lg:w-auto mb-4 lg:mb-0">
                         <i class="fas fa-sharp fa-solid fa-dollar-sign text-green-600 text-xl mb-1"></i>
                         <p class="font-bold text-sm">Budget Neutral</p>
-                        <p class="text-xs text-gray-600">Redirect existing subsidies.</p>
+                        <p class="text-xs text-gray-600">Redirect subsidies.</p>
                     </div>
 
-                    <!-- Step 2: Investment -->
                     <div class="flowchart-item p-3 bg-white border border-green-300 rounded-lg shadow-md flex-1 w-full lg:w-auto mb-4 lg:mb-0">
                         <i class="fas fa-flask text-green-600 text-xl mb-1"></i>
                         <p class="font-bold text-sm">Targeted Investment</p>
-                        <p class="text-xs text-gray-600">Fund R&D, Outreach, and Training.</p>
+                        <p class="text-xs text-gray-600">Fund R&D & Training.</p>
                     </div>
-                    
-                    <!-- Step 3: Outcome -->
+                     
                     <div class="flowchart-item p-3 bg-white border border-green-300 rounded-lg shadow-md flex-1 w-full lg:w-auto">
                         <i class="fas fa-hand-holding-heart text-green-600 text-xl mb-1"></i>
                         <p class="font-bold text-sm">NCBCC Adoption</p>
-                        <p class="text-xs text-gray-600">Increased farmer adoption.</p>
+                        <p class="text-xs text-gray-600">Sustainable Farms.</p>
                     </div>
                 </div>
 
                 <h4 class="font-semibold text-gray-800 mt-6 mb-3">Innovative Alternatives in Action:</h4>
+                
+                <div class="mb-4 rounded-lg overflow-hidden shadow-sm h-32 relative group">
+                    <img src="https://csafarms.ca/wp-content/uploads/2024/10/ladybugs-aphid-biocontrol.jpg" alt="Biological pest control, ladybug eating aphids, Ladybird eats aphid ..." class=" nofocus" tabindex="0" aria-label="Biological pest control, ladybug eating aphids, Ladybird eats aphid ..." role="button">
+                    <div class="absolute bottom-0 left-0 bg-green-800 bg-opacity-75 text-white text-xs px-2 py-1">
+                        Example: Biological Control Agents
+                    </div>
+                </div>
+
                 <ul class="space-y-2 text-sm text-gray-700">
                     <li class="flex items-start">
                         <i class="fas fa-bug text-green-500 mt-1 mr-2 flex-shrink-0"></i>
@@ -142,58 +199,55 @@
                     </li>
                 </ul>
                 <p class="text-xs italic text-gray-500 mt-3">
-                    <a href="https://caff.org/epm-bios/" target="_blank">Programs like the Community Alliance with Family Farmers’ BIOS have proven the cost-effectiveness and performance of these alternatives<sup>2</sup>.</a>
+                    <a href="https://caff.org/epm-bios/" target="_blank" class="hover:text-green-700 underline">Programs like CAFF's BIOS have proven cost-effectiveness<sup>2</sup>.</a>
                 </p>
             </div>
         </div>
 
-        <!-- BENEFITS SECTION (Financial and Societal Returns) -->
         <div class="bg-blue-900 text-white p-5 sm:p-6 rounded-xl">
             <h3 class="text-2xl font-bold mb-4 text-center">
                 <i class="fas fa-chart-line mr-2"></i> The Benefits: Financial & Societal Returns
             </h3>
             <div class="grid md:grid-cols-2 gap-4">
                 
-                <!-- Financial Benefits -->
                 <div class="border-b md:border-b-0 md:border-r border-blue-700 pr-4 pb-4 md:pb-0">
                     <h4 class="text-lg font-semibold mb-2 text-blue-300 flex items-center">
                         <i class="fas fa-dollar-sign mr-2"></i> Farmer Benefits (Financial)
                     </h4>
-                    <ul class="text-sm space-y-1 ml-4 list-disc list-outside">
-                        <li>Long-Term Savings: NCBCC methods are cost-effective over time, reducing reliance on costly annual chemical inputs.</li>
-                        <li>Market Opportunity: Creates and supports a growing market for safe, viable crop control options.</li>
+                    <ul class="text-sm space-y-1 ml-4 list-disc list-outside text-blue-50">
+                        <li>Long-Term Savings: Reduces reliance on costly annual chemical inputs.</li>
+                        <li>Market Opportunity: Supports a growing market for safe, viable crop control.</li>
                     </ul>
                 </div>
 
-                <!-- Societal Benefits -->
                 <div class="md:pl-4 pt-4 md:pt-0">
                     <h4 class="text-lg font-semibold mb-2 text-blue-300 flex items-center">
                         <i class="fas fa-people-arrows mr-2"></i> Community Benefits (Societal)
                     </h4>
-                    <ul class="text-sm space-y-1 ml-4 list-disc list-outside">
-                        <li>Improves Public Health: Directly reduces chemical load, protecting vulnerable communities and children.</li>
-                        <li>Safer Food Supply: Reduces consumer exposure to pesticide residues and chemical contamination.</li>
+                    <ul class="text-sm space-y-1 ml-4 list-disc list-outside text-blue-50">
+                        <li>Improves Public Health: Protects vulnerable communities and children.</li>
+                        <li>Safer Food Supply: Reduces consumer exposure to pesticide residues.</li>
                     </ul>
                 </div>
             </div>
         </div>
         
-        <!-- Conclusion and Contact -->
         <div class="mt-6 pt-4 border-t border-gray-200 text-center">
-            <p class="text-sm text-gray-600 italic">
+            <p class="text-sm text-gray-600 italic max-w-2xl mx-auto">
                 "Promoting NCBCC measures through existing USDA grant-making frameworks is the most effective way to overcome regulatory shortcomings and usher in a new era of responsible agriculture."
             </p>
             <div class="mt-4 text-gray-700">
                 <p class="font-bold">Contact:</p>
                 <p class="text-sm">Matt Chafin, Policy Lead | Email: mattchafin@vt.edu</p>
 
-		<br>
-		<p class="text-xs text-gray-400 mt-2 text-left mb-2">
-		   <a href="https://pubmed.ncbi.nlm.nih.gov/27765541/" target="_blank"> <sup>1</sup>Attina TM, Hauser R, Sathyanarayana S, Hunt PA, Bourguignon JP, Myers JP, DiGangi J, Zoeller RT, Trasande L. Exposure to endocrine-disrupting chemicals in the USA: a population-based disease burden and cost analysis. Lancet Diabetes Endocrinol. 2016 Dec;4(12):996-1003. doi: 10.1016/S2213-8587(16)30275-3. Epub 2016 Oct 17. PMID: 27765541.</a>
-		</p>
-		<p class="text-xs text-gray-400 mt-2 text-left">
-			<a href="https://caff.org/epm-bios/" target="_blank"> <sup>2</sup>Community Alliance with Family Farmers: "Alternative Mangement of codling moth, navel orangeworm, and web-spinning mites in walnuts"</a>
-		</p>
+                <div class="mt-6 pt-4 border-t border-gray-100 text-left">
+                    <p class="text-xs text-gray-400 mb-2">
+                       <a href="https://pubmed.ncbi.nlm.nih.gov/27765541/" target="_blank" class="hover:underline"> <sup>1</sup>Attina TM, Hauser R, et al. Exposure to endocrine-disrupting chemicals in the USA: a population-based disease burden and cost analysis. Lancet Diabetes Endocrinol. 2016.</a>
+                    </p>
+                    <p class="text-xs text-gray-400">
+                        <a href="https://caff.org/epm-bios/" target="_blank" class="hover:underline"> <sup>2</sup>Community Alliance with Family Farmers: "Alternative Management of codling moth, navel orangeworm, and web-spinning mites in walnuts"</a>
+                    </p>
+                </div>
             </div>
         </div>
 
